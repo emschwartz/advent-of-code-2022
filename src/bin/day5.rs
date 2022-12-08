@@ -46,12 +46,12 @@ fn parse_instructions(input: &str) -> Vec<(usize, usize, usize)> {
         .collect()
 }
 
-fn apply_instructions(input: &str, is_part1: bool) -> String {
+fn apply_instructions(input: &str, move_crates_one_at_a_time: bool) -> String {
     let mut stacks = parse_starting_position(input);
     let instructions = parse_instructions(input);
 
     for (quantity, from, to) in instructions {
-        if is_part1 {
+        if move_crates_one_at_a_time {
             for _i in 0..quantity {
                 if let Some(crate_id) = stacks[from].pop_back() {
                     stacks[to].push_back(crate_id);
